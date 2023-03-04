@@ -1,0 +1,59 @@
+.employee {
+  background-color: #22242A;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 0.4rem;
+  position: relative;
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    &::before {
+      content: '';
+      height: 1.5rem;
+      width: 1.5rem;
+      background-color: green;
+      border-radius: 50%;
+      border: 2px solid white;
+      position: absolute;
+      top: 8px;
+      right: 12.5rem;
+      z-index: 1;
+    }
+
+    img {
+      height: 10rem;
+      width: 10rem;
+      padding: 1.2rem;
+      border-radius: 1rem;
+    }
+    
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      button:nth-child(1){
+        min-width: 12rem !important;
+      }
+
+      button:nth-child(2){
+        min-width: 4rem !important;
+        background-color: rgb(161, 46, 46);
+
+        &:hover {
+          background-color: rgb(143, 18, 18);
+          transition: 400ms;
+        }
+      }
+    }
+  }
+
+}

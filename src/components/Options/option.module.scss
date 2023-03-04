@@ -1,0 +1,22 @@
+.select {
+  width: 40%;
+  height: 4rem;
+  box-sizing: border-box;
+  padding: 0 1rem;
+
+  font-family: 'Nunito', sans-serif;
+
+  border: 2px solid #633BBC;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  border-radius: 0.4rem;
+
+  &__option {
+    color: #633BBC;
+    font-weight: 600;
+    background-color: transparent;
+    border-radius: none;
+    margin: 1rem;
+  }
+}

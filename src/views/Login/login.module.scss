@@ -1,0 +1,58 @@
+.viewLogin {
+  padding: 4rem;
+
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    height: 36rem;
+    width: 36rem;
+    border-radius: 50%;
+    background-color: #633BBC;
+    position: absolute;
+    top: -20rem;
+    left: -20rem;
+    filter: blur(6rem);
+  }
+
+  &::after {
+    content: '';
+    height: 36rem;
+    width: 36rem;
+    border-radius: 50%;
+    background-color: #633BBC;
+    position: absolute;
+    right: 30rem;
+    bottom: 30rem;
+    filter: blur(8rem);
+    position: absolute;
+  }
+
+  &__form {
+    width: 60%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 16rem;
+      width: 16rem;
+      border-radius: 50%;
+      background-color: #633BBC;
+      position: absolute;
+      right: 0rem;
+      bottom: 80rem;
+      filter: blur(6rem);
+    }
+
+  }
+
+  &__img {
+    width: 40%;
+    z-index: 1;
+  }
+}

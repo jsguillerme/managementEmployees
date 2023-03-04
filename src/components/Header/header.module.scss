@@ -1,0 +1,35 @@
+.header {
+  height: 4rem;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #633BBC;
+
+  img {
+    height: 4.5rem;
+    width: 3.5rem;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+
+    &__links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      font-size: 1.6rem;
+
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+      }
+    }
+  }
+}
