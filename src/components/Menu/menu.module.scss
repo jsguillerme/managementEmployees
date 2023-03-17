@@ -35,7 +35,7 @@
   &__register {
     width: 40%;
     padding: 3rem;
-    
+
     z-index: 1;
     border-radius: 0.4rem;
 
@@ -44,6 +44,12 @@
     gap: 3rem;
 
     background-color: #302f33;
+
+    &__actions {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+    }
 
     form {
       display: flex;

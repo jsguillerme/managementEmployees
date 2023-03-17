@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { httpHeadersFactory } from '../../factory/http.factory'
 import * as FontsIcon from '@fortawesome/free-solid-svg-icons';
@@ -19,14 +18,26 @@ export default function Menu(props) {
   const [registerRole, setRegisterRole] = useState('user');
   const [loadLogin, setLoadLogin] = useState(false);
   const [showP, setShowP] = useState(false);
+  const [showRegister, setShowRegister] = useState(true);
 
+  useEffect(() => {
+    if (props.setEditEmployees._id) {
+      window.scroll({top , behavior: 'smooth'})
+      setShowRegister(false);
+      setRegisterEmail(props.setEditEmployees.email)
+      setRegisterName(props.setEditEmployees.nome)
+      setRegisterPassword('')
+      setRegisterRole(props.setEditEmployees.role)
+    }
 
-  async function registerEmploye(event) {
+    return;
+  }, [props.setEditEmployees])
+
+  async function registerEmployee(event) {
     event.preventDefault();
     setLoadLogin(true)
 
     const payload = {
-      id: uuidv4(),
       name: registerName,
       email: registerEmail,
       password: registerPassword,
@@ -40,9 +51,6 @@ export default function Menu(props) {
         headers: httpHeadersFactory(),
         body: JSON.stringify(payload)
       });
-
-      const data = response.json();
-      console.log(data)
 
       if (response.status !== 201) {
         setShowP(true)
@@ -67,7 +75,7 @@ export default function Menu(props) {
       <aside className={style.menuPrincipal__register}>
         <h3>Preencha as informações</h3>
         <p>Coloque as informações para cadastrar um funcionário na empresa!</p>
-        <form onSubmit={registerEmploye}>
+        <form onSubmit={registerEmployee}>
           <Input
             id='inputFullname'
             label='Nome Completo'
@@ -103,15 +111,22 @@ export default function Menu(props) {
             options={[{ valor: 'admin', label: 'Admin' }, { valor: 'user', label: 'User' }]}
             idSelect='roleEmployee'
             required={true}
-            valor={registerRole}
+            valor={registerRole.valor}
             aoAlterado={valor => setRegisterRole(valor)}
           />
-          <Botao
-            icon={<FontAwesomeIcon pulse={loadLogin} icon={loadLogin ? FontsIcon.faSpinner : FontsIcon.faSave} />}
-            children='Cadastrar'
-            disabled={!registerEmail || !registerName || !registerPassword}
-          />
-          {<span style={{display: (showP ? 'block' : 'none')}}>Erro ao realizar requisição!!</span>}
+          <div className={style.menuPrincipal__register__actions}>
+            {!showRegister && <Botao
+              icon={<FontAwesomeIcon icon={FontsIcon.faCancel}/>}
+              children='Cancelar'
+              style={{backgroundColor: '#8b8b8b', color: 'white'}}
+            />}
+            <Botao
+              icon={<FontAwesomeIcon pulse={loadLogin} icon={loadLogin ? FontsIcon.faSpinner : FontsIcon.faSave} />}
+              children={showRegister ? 'Cadastrar' : 'Atualizar'}
+              disabled={!registerEmail || !registerName || !registerPassword && showRegister || registerRole.label == "Selecione"}
+            />
+          </div>
+          {<span style={{ display: (showP ? 'block' : 'none') }}>Erro ao realizar requisição!!</span>}
         </form>
       </aside>
     </section>
