@@ -22,7 +22,7 @@ export default function Menu(props) {
 
   useEffect(() => {
     if (props.setEditEmployees._id) {
-      window.scroll({top , behavior: 'smooth'})
+      window.scroll({ top, behavior: 'smooth' })
       setShowRegister(false);
       setRegisterEmail(props.setEditEmployees.email)
       setRegisterName(props.setEditEmployees.nome)
@@ -32,6 +32,14 @@ export default function Menu(props) {
 
     return;
   }, [props.setEditEmployees])
+
+  function handleCancelEditEmployee() {
+    setShowRegister(true);
+    setRegisterEmail('')
+    setRegisterName('')
+    setRegisterPassword('')
+    setRegisterRole('user')
+  }
 
   async function registerEmployee(event) {
     event.preventDefault();
@@ -116,9 +124,10 @@ export default function Menu(props) {
           />
           <div className={style.menuPrincipal__register__actions}>
             {!showRegister && <Botao
-              icon={<FontAwesomeIcon icon={FontsIcon.faCancel}/>}
+              icon={<FontAwesomeIcon icon={FontsIcon.faCancel} />}
               children='Cancelar'
-              style={{backgroundColor: '#8b8b8b', color: 'white'}}
+              style={{ backgroundColor: '#8b8b8b', color: 'white' }}
+              onClick={() => handleCancelEditEmployee()}
             />}
             <Botao
               icon={<FontAwesomeIcon pulse={loadLogin} icon={loadLogin ? FontsIcon.faSpinner : FontsIcon.faSave} />}
